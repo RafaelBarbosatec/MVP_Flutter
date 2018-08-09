@@ -18,15 +18,14 @@ class Api{
       final String jsonBody = response.body;
 
       if(statusCode < 200 || statusCode >= 300 || jsonBody == null) {
-        throw new FetchDataException("Error while getting contacts [StatusCode:$statusCode, Error:${response.reasonPhrase}]");
+        throw new FetchDataException("Error while getting data [StatusCode:$statusCode, Error:${response.reasonPhrase}]");
       }
 
       const JsonDecoder decoder = const JsonDecoder();
       return decoder.convert(response.body);
 
-
-    } on Exception catch(_){
-      return null;
+    } on Exception catch(e){
+      throw new FetchDataException("Error while getting data [${e.toString()}]");
     }
 
   }
