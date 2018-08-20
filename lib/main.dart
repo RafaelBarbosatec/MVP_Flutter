@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvp_example/injection/Injector.dart';
+import 'package:flutter_mvp_example/localization/MyLocalizationsDelegate.dart';
 import 'package:flutter_mvp_example/pages/home/Home.dart';
 
 void main() => runApp(new MyApp());
@@ -17,6 +18,22 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('pt', 'BR')
+      ],
+      localizationsDelegates: [
+        const MyLocalizationsDelegate(),
+      ],
+      localeResolutionCallback: (Locale locale, Iterable<Locale> supportedLocales){
+        for (Locale supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode || supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
+          }
+        }
+
+        return supportedLocales.first;
+      },
       home: new Home(),
     );
   }

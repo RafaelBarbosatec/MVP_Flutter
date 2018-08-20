@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mvp_example/domain/Book/Book.dart';
+import 'package:flutter_mvp_example/localization/Localizations.dart';
 import 'package:flutter_mvp_example/pages/home/HomePresenter.dart';
 
 class Home extends StatefulWidget {
@@ -13,6 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomePageState extends State<Home> implements BookViewContract{
 
+  MyLocalizations stringLocations ;
   HomePresenter _presenter;
   bool _isLoading = false;
   List _books = new List();
@@ -31,8 +35,12 @@ class _HomePageState extends State<Home> implements BookViewContract{
   @override
   Widget build(BuildContext context) {
 
+    stringLocations = MyLocalizations.of(context);
+
     return new Scaffold(
-      appBar: new AppBar(),
+      appBar: new AppBar(
+        title: Text(stringLocations.trans('tittle_home')),
+      ),
       body: new Container(
         child: _isLoading? _getProgress() : _getListViewWidget(),
       ),
@@ -59,7 +67,20 @@ class _HomePageState extends State<Home> implements BookViewContract{
         }
     );
 
-    return list;
+    RefreshIndicator refreshIndicator = new RefreshIndicator(
+        onRefresh: myRefresh,
+        child: list
+    );
+
+    return refreshIndicator;
+
+  }
+
+  Future<Null> myRefresh() async{
+
+    _presenter.loadBooks();
+
+    return null;
   }
 
   @override
@@ -72,7 +93,7 @@ class _HomePageState extends State<Home> implements BookViewContract{
 
   @override
   void onLoadError() {
-
+    print("onLoadError");
   }
 
 }
