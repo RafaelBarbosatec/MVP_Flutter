@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class Book extends StatelessWidget{
 
@@ -30,7 +31,7 @@ class Book extends StatelessWidget{
         child: new Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new FadeInImage.assetNetwork(placeholder: '', image: _img,fit: BoxFit.cover,width: 60.0,height: 95.0),
+            _getImage(_img),
             _getColumText(_nome,_data,_descricao.substring(0,100)),
           ],
         ),
@@ -75,5 +76,10 @@ class Book extends StatelessWidget{
       style: new TextStyle(color: Colors.grey,fontSize: 10.0),);
   }
 
+  Widget _getImage(String img) {
+
+    return FadeInImage.memoryNetwork(placeholder: kTransparentImage,image: _img,fit: BoxFit.cover,width: 60.0,height: 95.0),
+
+  }
 
 }
