@@ -78,7 +78,7 @@ class Book extends StatelessWidget{
 
   Widget _getImage(String img) {
 
-    return FadeInImage.memoryNetwork(placeholder: kTransparentImage,image: _img,fit: BoxFit.cover,width: 60.0,height: 95.0),
+    return FadeInImage.memoryNetwork(placeholder: kTransparentImage,image: _img,fit: BoxFit.cover,width: 60.0,height: 95.0);
 
   }
 
