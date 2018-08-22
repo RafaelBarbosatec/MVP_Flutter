@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mvp_example/localization/Localizations.dart';
 
 class MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
+
   const MyLocalizationsDelegate();
 
   @override
@@ -15,10 +16,27 @@ class MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
     await localizations.load();
 
     print("Load ${locale.languageCode}");
-
+    
     return localizations;
   }
 
   @override
   bool shouldReload(MyLocalizationsDelegate old) => false;
+
+  Locale resolution(Locale locale, Iterable<Locale> supportedLocales){
+    for (Locale supportedLocale in supportedLocales) {
+      if (supportedLocale.languageCode == locale.languageCode || supportedLocale.countryCode == locale.countryCode) {
+        return supportedLocale;
+      }
+    }
+    return supportedLocales.first;
+  }
+
+  static List<Locale> supportedLocales() {
+    return [
+      const Locale('en', 'US'),
+      const Locale('pt', 'BR')
+    ];
+  }
+
 }

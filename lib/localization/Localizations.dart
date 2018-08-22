@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+//Classe responsavel por carregar as strings do json de acordo com a localidade do dispositivo
 class MyLocalizations {
   MyLocalizations(this.locale);
 

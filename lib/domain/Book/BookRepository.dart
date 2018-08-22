@@ -28,13 +28,19 @@ class BookRepository{
 
     List<Book> list = List<Book>();
 
-    Book book = Book("1", "Nome", "data", "", "breve descricao");
+    Book book = Book("1", "Nome", "data", "http://images.livrariasaraiva.com.br//imagemnet//imagem.aspx//?pro_id=9413030&a=-1&qld=90&l=190", "breve descricao");
 
     list.add(book);
     list.add(book);
     list.add(book);
     list.add(book);
     list.add(book);
+    list.add(book);
+    list.add(book);
+    list.add(book);
+    list.add(book);
+    list.add(book);
+
 
     return list;
 

@@ -32,7 +32,7 @@ class Book extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _getImage(_img),
-            _getColumText(_nome,_data,_descricao.substring(0,100)),
+            _getColumText(_nome,_data,_descricao),
           ],
         ),
       ),

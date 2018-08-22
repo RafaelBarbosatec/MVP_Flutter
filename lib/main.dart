@@ -7,8 +7,10 @@ void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  MyLocalizationsDelegate myLocation = const MyLocalizationsDelegate();
+
   MyApp(){
-    Injector.configure(Flavor.PRO);
+    Injector.configure(Flavor.MOCK);
   }
 
   @override
@@ -19,23 +21,13 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blueGrey[800],
         accentColor: Colors.teal[800],
       ),
-      supportedLocales: [
-        const Locale('en', 'US'),
-        const Locale('pt', 'BR')
-      ],
+      supportedLocales: MyLocalizationsDelegate.supportedLocales(),
       localizationsDelegates: [
-        const MyLocalizationsDelegate(),
+        myLocation,
       ],
-      localeResolutionCallback: (Locale locale, Iterable<Locale> supportedLocales){
-        for (Locale supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale.languageCode || supportedLocale.countryCode == locale.countryCode) {
-            return supportedLocale;
-          }
-        }
-
-        return supportedLocales.first;
-      },
+      localeResolutionCallback: myLocation.resolution,
       home: new Home(),
     );
   }
+
 }

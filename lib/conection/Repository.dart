@@ -1,7 +1,7 @@
 
-import 'dart:async';
 import 'package:flutter_mvp_example/domain/Book/BookRepository.dart';
 
+//Classe que controla os repositorios disponíveis no projeto
 class Repository {
 
   final bool _prod;
@@ -12,14 +12,4 @@ class Repository {
     return new BookRepository(_prod);
   }
 
-}
-
-class FetchDataException implements Exception {
-  String _message;
-
-  FetchDataException(this._message);
-
-  String toString() {
-    return "Exception: $_message";
-  }
 }

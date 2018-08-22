@@ -1,4 +1,5 @@
 
+import 'package:flutter_mvp_example/conection/Api.dart';
 import 'package:flutter_mvp_example/domain/Book/Book.dart';
 import 'package:flutter_mvp_example/domain/Book/BookRepository.dart';
 import 'package:flutter_mvp_example/injection/Injector.dart';
@@ -23,7 +24,13 @@ class HomePresenter{
     _bookRepository.get()
         .then((books) => _view.onLoadBooksComplete(books))
         .catchError((onError) {
+
           print(onError);
+
+          if(onError is FetchDataException){
+            print("codigo: ${onError.code()}");
+          }
+          
           _view.onLoadError();
         });
   }
