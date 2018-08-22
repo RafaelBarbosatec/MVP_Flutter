@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   MyLocalizationsDelegate myLocation = const MyLocalizationsDelegate();
 
   MyApp(){
-    Injector.configure(Flavor.MOCK);
+    Injector.configure(Flavor.PRO);
   }
 
   @override
