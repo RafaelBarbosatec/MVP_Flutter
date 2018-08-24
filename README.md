@@ -1,6 +1,8 @@
 # flutter_mvp_example
 
-A new Flutter application.
+<img src="https://github.com/RafaelBarbosatec/MVP_Flutter/blob/master/img/img.png" width="350"/>-->
+
+Exemplo de app com Flutter utilizando MVP e Internationalization
 
 ## Getting Started
 
